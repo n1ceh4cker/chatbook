@@ -5,11 +5,26 @@ const server = http.createServer(app)
 const router = require('./router')
 const mongoose = require('mongoose')
 const keys = require('./config/keys')
+const passport = require('passport')
+const session = require('express-session')
+require('./config/passport-config')
 
 //telling express to server static files from folder public
 app.use(express.static('public'))
 //telling express to use view engine ejs
 app.set('view-engine', 'ejs')
+//telling express to use urlencoded to fetch form data
+app.use(express.urlencoded({ extended : false}))
+//using express-session
+app.use(session({
+	secret : keys.session.secret,
+	resave : false,
+	saveUninitialized : false
+}))
+//intializing passport settings
+app.use(passport.initialize())
+//using passport session for logged in user details
+app.use(passport.session())
 //telling express to use router for routes starting at /
 app.use('/', router)
 
