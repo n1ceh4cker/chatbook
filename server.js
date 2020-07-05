@@ -6,6 +6,7 @@ const router = require('./router')
 const mongoose = require('mongoose')
 const keys = require('./config/keys')
 const passport = require('passport')
+const flash = require('express-flash')
 const session = require('express-session')
 require('./config/passport-config')
 
@@ -25,6 +26,15 @@ app.use(session({
 app.use(passport.initialize())
 //using passport session for logged in user details
 app.use(passport.session())
+//using express-flash for flash masseges
+app.use(flash())
+//global variables
+app.use(function(req, res, next) {
+	res.locals.success_msg = req.flash('success_msg');
+	res.locals.error_msg = req.flash('error_msg');
+	res.locals.error = req.flash('error');
+	next();
+  });
 //telling express to use router for routes starting at /
 app.use('/', router)
 
