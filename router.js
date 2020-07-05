@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const userController = require('./controller/userController')
 
-router.get('/', (req, res) =>{
-    res.render('index.ejs')
-})
+router.get('/', userController.home)
 module.exports = router
