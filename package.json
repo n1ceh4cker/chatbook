@@ -1,0 +1,42 @@
+{
+  "name": "chatbook",
+  "version": "1.0.0",
+  "description": "text and video chat app using node.js, express, mongodb, socket.io, simple-peer and passport",
+  "main": "server.js",
+  "scripts": {
+    "start": "node socket.js",
+    "dev": "nodemon socket.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n1ceh4cker/chatbook.git"
+  },
+  "keywords": [
+    "chat",
+    "video",
+    "call",
+    "node",
+    "express",
+    "passport",
+    "mongodb",
+    "socket.io",
+    "WebSockets",
+    "WebRTC"
+  ],
+  "author": "Nice Akhtar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/n1ceh4cker/chatbook/issues"
+  },
+  "homepage": "https://github.com/n1ceh4cker/chatbook#readme",
+  "dependencies": {
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.21",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
