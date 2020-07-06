@@ -19,6 +19,13 @@ exports.checkAuthenticated = (req, res, next) => {
 	res.redirect('/login')
 }
 
+exports.forwardAuthenticated = (req, res, next) =>{
+    if (!req.isAuthenticated()) {
+      return next();
+    }
+    res.redirect('/');      
+  }
+
 exports.logout = (req, res) => {
 	req.logOut()
 	res.redirect('/login')

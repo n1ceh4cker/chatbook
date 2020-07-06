@@ -4,7 +4,7 @@ const userController = require('./controller/userController')
 const chatController = require('./controller/chatController')
 
 router.get('/',userController.checkAuthenticated, chatController.home)
-router.get('/login',userController.login)
+router.get('/login',userController.forwardAuthenticated, userController.login)
 router.post('/login',userController.perform_login)
 router.get('/logout', userController.logout)
 module.exports = router
