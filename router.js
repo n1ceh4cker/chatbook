@@ -9,4 +9,5 @@ router.post('/login',userController.perform_login)
 router.get('/logout', userController.logout)
 router.get('/register',userController.forwardAuthenticated, userController.register)
 router.post('/register',userController.perform_register)
+router.get('/confirm/:token',userController.confirmRegistration)
 module.exports = router
