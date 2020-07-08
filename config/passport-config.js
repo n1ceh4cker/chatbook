@@ -9,6 +9,9 @@ const authenticateUser = ( email, password, done) =>{
 			if(user == null){
 				return done(null, false, { message:'No user found with this email' })
 			}
+			else if(!user.active){
+				return done(null, false, { message:'Your email is not verified' })
+			}
 			bcrypt.compare(password, user.password, (err, result) =>{
 					if(result){ return done(null, user) }
 					else{ return done(null, false, { message:'Password is incorrect' }) }
