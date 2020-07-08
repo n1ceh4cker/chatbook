@@ -85,7 +85,7 @@ exports.perform_register = async(req, res) =>{
 								else console.log(info)
 							})
 						})
-						req.flash('success_msg', 'For next step check your email!!');
+						req.flash('success_msg', 'For next step check your email!! If you did not recieved one you can try resend mail');
 						res.redirect('/register');
 					})	
 				}))
@@ -117,6 +117,44 @@ exports.confirmRegistration = (req, res) => {
 			})
 		}
 	})
+}
+
+exports.renderResendEmail = (req, res) =>{
+	res.render('resend-email.ejs')
+}
+exports.resendEmail = (req, res) => {
+	const email = req.body.email
+	User.findOne({ email: email })
+			.then(user => {
+				if(user && user.active){
+					req.flash('error_msg','Email already verified!!')
+					res.redirect('/login')
+				}else if(user){
+					jwt.sign({ user: user.id }, keys.jwt.secret, { expiresIn : '5m' },
+					(err, emailToken) =>{
+						const url = `http://${req.host}:3000/confirm/${emailToken}`
+						console.log(url)
+						let mailOptions = {
+							from: '"my auth app" <niceakhtar43@gmail.com>', // sender address
+							to: email, // list of receivers
+							subject: "Cofirm your email address", // Subject line
+							html: `<p>Please verify your account by clicking <a href="${url}">this link</a>. If you are unable to do so, copy and
+							paste the following link into your browser:</p><p>${url}</p>`,
+							text: 'Please verify your account by clicking the following link, or by copying and pasting it into your browser: ${url}'
+						}
+						// send mail with defined transport object
+						transporter.sendMail(mailOptions, (err,info) =>{
+							if(err) console.log(err)
+							else console.log(info)
+						})
+					})
+					req.flash('success_msg','Check your email!!')
+					res.redirect('/register')
+				}else{
+					req.flash('error_msg','Email not registered!!')
+					res.redirect('/register')
+				}
+			})	
 }
 
 exports.checkAuthenticated = (req, res, next) => {
