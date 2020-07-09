@@ -39,6 +39,7 @@
     "mongoose": "^5.9.21",
     "nodemailer": "^6.4.10",
     "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0"
   },
   "devDependencies": {

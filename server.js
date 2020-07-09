@@ -9,6 +9,7 @@ const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
 require('./config/passport-config')
+require('./config/passport-google-config') 
 
 //telling express to server static files from folder public
 app.use(express.static('public'))
