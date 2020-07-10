@@ -1,4 +1,8 @@
 module.exports = {
+    google:{
+        clientId:'YOUR_CLIENT_ID',
+        clientSecret:'YOUR_CLIENT_SECRET'
+    },
     gmail:{
         username:'YOUR_EMAIL',
         password:'YOUR_PASSWORD'
