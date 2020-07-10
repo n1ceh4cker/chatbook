@@ -19,4 +19,8 @@ router.get('/auth/google', passport.authenticate('google',{
 router.get('/auth/google/redirect', passport.authenticate('google', {failureRedirect:'/login'}), (req, res)=>{
     res.redirect('/')
 })
+router.get('/forget',userController.forgotPassword)
+router.post('/forget',userController.forgotPasswordRedirect)
+router.get('/reset/:token',userController.resetPassword)
+router.post('/reset',userController.resetPasswordRedirect)
 module.exports = router
