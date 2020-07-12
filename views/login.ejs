@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link
       rel="stylesheet"
       href="https://bootswatch.com/4/journal/bootstrap.min.css"
@@ -16,7 +16,7 @@
 		<div class="row mt-5">
 			<div class="col-md-6 m-auto">
 			  <div class="card card-body">
-				<h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>  Login</h1>
+				<h1 class="text-center mb-3"><i class="fa fa-sign-in"></i>  Login</h1>
 				      <%- include ('./partials/messages') %>
 				<form action="/login" method="POST">
 				  <div class="form-group">
@@ -45,10 +45,10 @@
 					No Account? <a href="/register">Register</a>
 				</p>
 				<p class="lead mt-1">
-					Or sign in with? <a href="/auth/google"><i class="fas fa-google-plus"></i></a>
+					<a href="/forget">Forget password? </a>
 				</p>
 				<p class="lead mt-1">
-					<a href="/forget">Forget password? </a>
+					Or sign in with <a href="/auth/google"><i class="fa fa-google-plus-square"></i></a>
 				</p>
 			  </div>
 			</div>

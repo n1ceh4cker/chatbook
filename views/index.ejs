@@ -1,11 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbook</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>ChatBook Home</title>
 </head>
 <body>
-    <p>Hello! welcome <%=user.name%> to chatbook website</p>
+  <div class="container">
+    <header class="header">
+      <h1>ChatBook</h1>
+      <h3>Welcome <%= cur_user.name %></h3>
+      <a href="/logout" class="btn">Logout <i class="fa fa-sign-out" area-hidden="true"></i></a>
+    </header>
+    <main class="main">
+    <div class="box">
+      <h3>Friends</h3>
+      <% friends.forEach(friend =>{ %>
+      <div id="users">
+        <div>
+          <p><%= friend.name%></p>
+          <p><%= friend.email%></p>
+        </div>  
+        <div>
+          <a href="/chat/<%= friend.id %>/<%= friend.email%>">Chat <i class="fa fa-paper-plane"></i></a>
+        </div>    
+      </div>
+      <% }) %>	       
+    </div>
+    
+	  <div class="box">
+      <h3>Pending Reqests</h3>  
+      <% recieved_reqs.forEach(req =>{ %>
+      <div id="users">
+        <div>
+          <p><%= req.name%></p>
+          <p><%= req.email%></p>
+        </div>
+        <div>
+          <a href="/accept_friend_request/<%= req.id %>">Accept <i class="fa fa-square-o"></i></a>
+        </div>
+      </div>
+      <% }) %>	 
+    </div>
+
+    <div class="box">
+      <h3>Sent Requests</h3>
+      <% sent_reqs.forEach(req => { %> 
+      <div id="users">
+        <div>
+          <p><%= req.name%></p>
+          <p><%= req.email%></p>
+        </div>  
+      </div>
+      <% }) %>	    
+    </div>
+
+    <div class="box">
+      <h3>People you may know</h3>
+      <% rem_users.forEach(user => { %> 
+      <div id="users">
+        <div>
+          <p><%= user.name%></p>
+          <p><%= user.email%></p>
+        </div>
+        <div>
+          <a href="/send_friend_request/<%= user.id %>">Add Friend <i class="fa fa-plus"></i></a>
+        </div>
+      </div>
+      <% }) %>	    
+    </div>
+    </main>
+  </div>
 </body>
 </html>

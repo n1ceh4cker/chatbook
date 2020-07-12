@@ -23,4 +23,7 @@ router.get('/forget',userController.forgotPassword)
 router.post('/forget',userController.forgotPasswordRedirect)
 router.get('/reset/:token',userController.resetPassword)
 router.post('/reset',userController.resetPasswordRedirect)
+router.get('/send_friend_request/:id',userController.checkAuthenticated, chatController.send_friend_req)
+router.get('/accept_friend_request/:id',userController.checkAuthenticated, chatController.accept_friend_req)
+
 module.exports = router
