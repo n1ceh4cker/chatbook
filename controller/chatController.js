@@ -55,3 +55,29 @@ exports.send_friend_req = (req, res) =>{
         })		
     })
 }
+
+exports.accept_friend_req = (req, res) =>{
+	Chatbox.findOne({ user_1 : req.params.id, user_2 : req.user.id }, (err, chatbox) =>{
+		if(!err){
+			chatbox.active = true
+			chatbox.save((err) => {
+                if(err) console.log(err)
+                User.findById(req.params.id, (err, user) =>{
+                    if(!err){
+                        user.friends.push(req.user.id)
+                        user.sent_reqs.pop(req.user.id)
+                        user.save((err) =>{
+                        if(err) console.log(err)
+                        req.user.friends.push(req.params.id)
+                        req.user.recieved_reqs.pop(req.params.id)
+                        req.user.save((err) =>{
+                            if(err) console.log(err)
+                            res.redirect('/')
+                        })
+                    })
+                    }
+                })
+			})		
+		}
+	})
+}
