@@ -81,3 +81,22 @@ exports.accept_friend_req = (req, res) =>{
 		}
 	})
 }
+
+exports.chat = (req, res) => {
+    User.findById(req.params.id, (err,user)=>{
+      if(user){
+        Chatbox.find({ user_1 : req.params.id, user_2 : req.user.id, }, (err, chatbox_1) =>{
+            if(!err && chatbox_1[0]!= null){
+                res.render('chat.ejs',{ chatbox : chatbox_1[0], to : user, from : req.user })
+            }
+            else if(!err && chatbox_1[0] ==null){
+                Chatbox.find({ user_1 : req.user.id, user_2 : req.params.id }, (err, chatbox_2) =>{
+                    if(!err){
+                        res.render('chat.ejs', {chatbox : chatbox_2[0], to : user, from : req.user})
+                    } 
+                })
+            }
+        })
+      }          
+    })
+}
