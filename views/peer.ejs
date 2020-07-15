@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+    
+</head>
+<body>
+    <p id="chatbox" style="display: none;"><%= chatbox_id %></p>
+    <div class="video-header">
+        <a class="btn" href="/">Leave</a>
+    </div>
+    <div class="video-container">
+        <div id="peerDiv" class="remote-video">
+    
+        </div>
+    
+        <div class="local-video">
+            <video muted></video>
+        </div>
+    </div>
+    <script type="text/javascript" src="/socket.io/socket.io.js" ></script>
+    <script type="text/javascript" src="/js/bundle.js"></script>
+</body>
+</html>

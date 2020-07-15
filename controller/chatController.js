@@ -100,3 +100,8 @@ exports.chat = (req, res) => {
       }          
     })
 }
+
+exports.videoChat = (req, res) =>{
+	let chatbox_id = req.params.chatbox_id
+	res.render('peer.ejs', { chatbox_id : chatbox_id })
+}

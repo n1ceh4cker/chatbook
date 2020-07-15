@@ -25,6 +25,7 @@ router.get('/reset/:token',userController.resetPassword)
 router.post('/reset',userController.resetPasswordRedirect)
 router.get('/send_friend_request/:id',userController.checkAuthenticated, chatController.send_friend_req)
 router.get('/accept_friend_request/:id',userController.checkAuthenticated, chatController.accept_friend_req)
-router.get('/chat/:id/:email',userController.checkAuthenticated, chatController.chat)
+router.get('/chat/:id',userController.checkAuthenticated, chatController.chat)
+router.get('/video-chat/:chatbox_id',userController.checkAuthenticated,chatController.videoChat)
 
 module.exports = router

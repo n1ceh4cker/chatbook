@@ -7,6 +7,7 @@ const io = socketio(server)
 const formatter = require('./utils/messages')
 
 //socket.io stuff
+let clients = 0
 io.on('connection', socket => {
 		//Join chat
 		socket.on('joinChat', ({chatbox, from}) =>{
@@ -30,7 +31,36 @@ io.on('connection', socket => {
 			})
 			//Broadcast message to both
 			io.to(chat_id).emit('message', formatter(from, msg))
-       })	   
+	   })
+
+	    //Related to frontend simple-peer
+	    //Join video chat 
+		socket.on('NewClient',(chatbox_id) => {
+			socket.join(chatbox_id)
+		 if(clients%2!=0){
+			 //Tell the first browser to create init peer
+			 socket.to(chatbox_id).emit('CreatePeer')
+		 	}
+		 	clients++;
+		})
+
+   		//Offer from init peer
+		socket.on('Offer', ({chatbox_id, data})=>{
+			//Sending offer to second browser
+			socket.broadcast.to(chatbox_id).emit('BackOffer',data)
+		})
+
+		//Answer from second browser
+		socket.on('Answer',({chatbox_id, data})=>{
+			//Signal to first browser
+			socket.broadcast.to(chatbox_id).emit('BackAnswer',data)
+		})
+
+	 	//When user disonnects
+		socket.on('disconnect',()=>{
+			socket.leaveAll()
+			socket.disconnect(true)
+		})	   	   
 	})
 	
 //mongoose database connection

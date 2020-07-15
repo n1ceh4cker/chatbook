@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node socket.js",
-    "dev": "nodemon socket.js"
+    "dev": "nodemon socket.js  & npx watchify ./public/js/peer.js -o ./public/js/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -42,9 +42,11 @@
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
+    "simple-peer": "^9.7.2",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "watchify": "^3.11.1"
   }
 }
