@@ -1,7 +1,12 @@
 const express = require('express')
 const app = express()
-const http = require('http')
-const server = http.createServer(app)
+const https = require('https')
+const fs = require('fs')
+let options = {
+	key: fs.readFileSync('./config/client-key.pem'),
+	cert: fs.readFileSync('./config/client-cert.pem')
+}
+const server = https.createServer(options, app)
 const router = require('./router')
 const keys = require('./config/keys')
 const passport = require('passport')
