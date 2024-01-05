@@ -69,10 +69,10 @@ exports.perform_register = async(req, res) =>{
 					.then(user => { 
 						jwt.sign({ user: user.id }, keys.jwt.secret, { expiresIn : '5m' },
 						(err, emailToken) =>{
-							const url = `http://${req.host}:3000/confirm/${emailToken}`
+							const url = `https://${req.host}:3000/confirm/${emailToken}`
 							console.log(url)
 							let mailOptions = {
-								from: '"my auth app" <niceakhtar43@gmail.com>', // sender address
+								from: '"Chatbook" <niceakhtar43@gmail.com>', // sender address
 								to: email, // list of receivers
 								subject: "Cofirm your email address", // Subject line
 								html: `<p>Please verify your account by clicking <a href="${url}">this link</a>. If you are unable to do so, copy and
@@ -132,10 +132,10 @@ exports.resendEmail = (req, res) => {
 				}else if(user){
 					jwt.sign({ user: user.id }, keys.jwt.secret, { expiresIn : '5m' },
 					(err, emailToken) =>{
-						const url = `http://${req.host}:3000/confirm/${emailToken}`
+						const url = `https://${req.host}:3000/confirm/${emailToken}`
 						console.log(url)
 						let mailOptions = {
-							from: '"my auth app" <niceakhtar43@gmail.com>', // sender address
+							from: '"Chatbook" <niceakhtar43@gmail.com>', // sender address
 							to: email, // list of receivers
 							subject: "Cofirm your email address", // Subject line
 							html: `<p>Please verify your account by clicking <a href="${url}">this link</a>. If you are unable to do so, copy and
@@ -175,10 +175,10 @@ exports.forgotPasswordRedirect = (req, res) =>{
 						expiresIn : '5m'
 					},
 					(err, emailToken) =>{
-						const url = `http://${req.host}:3000/reset/${emailToken}`
+						const url = `https://${req.host}:3000/reset/${emailToken}`
 						console.log(url)
 						let mailOptions = {
-							from: '"my auth app" <niceakhtar43@gmail.com>', // sender address
+							from: '"Chatbook" <niceakhtar43@gmail.com>', // sender address
 							to: email, // list of receivers
 							subject: "Reset your password", // Subject line
 							html: `<p>Please reset your password by clicking <a href="${url}">this link</a>. If you are unable to do so, copy and
